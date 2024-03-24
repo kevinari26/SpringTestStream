@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--<Configuration status="WARN" monitorInterval="30">-->
+<Configuration>
+    <Properties>
+        <property name="consoleLayout">%d{yyyy-MM-dd HH:mm:ss.SSS} [%15.15t] %clr{%-5level} %-40.40C - %m%n</property>
+        <property name="fileLayout">%d{yyyy-MM-dd HH:mm:ss.SSS} [%15.15t] %-5level %-40.40C - %m%n</property>
+        <!-- edit sesuai project -->
+        <property name="filePattern">springTesting_%d{yyyy-MM-dd}_%i.log</property>
+        <property name="logPath">D:\KevinAri\logs\springTesting\</property>
+    </Properties>
+
+
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT" follow="true">
+            <PatternLayout pattern="${consoleLayout}" />
+        </Console>
+
+        <RollingFile name="fileLog"
+                     filePattern="${logPath}${filePattern}">
+            <PatternLayout pattern="${fileLayout}" />
+            <Policies>
+                <!--                <OnStartupTriggeringPolicy />-->
+                <TimeBasedTriggeringPolicy />
+                <SizeBasedTriggeringPolicy size="10 MB" />
+            </Policies>
+            <!--            <DefaultRolloverStrategy max="1" />-->
+        </RollingFile>
+
+    </Appenders>
+
+
+    <Loggers>
+        <Root level="info">
+            <AppenderRef ref="console" />
+            <AppenderRef ref="fileLog" />
+        </Root>
+
+    </Loggers>
+</Configuration>
